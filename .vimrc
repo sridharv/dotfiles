@@ -1,21 +1,16 @@
-execute pathogen#infect()
+" Enable pathogen
+source ~/.vim/custom/pathogen.vim
 
-syntax on
-filetype plugin indent on
+" Source a few sensible defaults outside of vim-sensible. 
+source ~/.vim/custom/defaults.vim
 
-set noerrorbells visualbell t_vb=
-autocmd GUIEnter * set visualbell t_vb=
-
-" Always display the status line
-set laststatus=2
-
-" Enable solarized color scheme
-syntax enable
-if has('gui_running')
-    set background=light
-    colorscheme solarized
+" Load local machine overrides.
+if !empty(glob("~/.vim/custom/local.vim"))
+	source ~/.vim/custom/local.vim
 endif
 
-set spell
-set spelllang=en_us
-set spellfile=$HOME/.vim/spell/en.utf-8.add
+" Per module customization
+source ~/.vim/custom/vim-airline.vim
+source ~/.vim/custom/vim-solarized.vim
+source ~/.vim/custom/supertab.vim
+

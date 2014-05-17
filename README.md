@@ -2,4 +2,5 @@
 
 These do the following:
 
-  * Set custom auto-indent for YAML
+  * Set custom auto-indent for YAML.
+  * Custom indentation and wrapping for python.

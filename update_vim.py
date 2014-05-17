@@ -32,6 +32,7 @@ modules = [
     'git://github.com/fatih/vim-go.git',
     'git://github.com/sridharv/vim-overrides.git',
     'git://github.com/avakhov/vim-yaml.git',
+    'git://github.com/ingydotnet/yaml-vim.git',
 ]
 
 def module_parse(module):

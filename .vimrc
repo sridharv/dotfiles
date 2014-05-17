@@ -13,4 +13,5 @@ endif
 source ~/.vim/custom/vim-airline.vim
 source ~/.vim/custom/vim-solarized.vim
 source ~/.vim/custom/supertab.vim
+source ~/.vim/custom/overrides.vim
 

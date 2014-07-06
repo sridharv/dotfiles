@@ -9,6 +9,10 @@ function! go#command#Run(bang, ...)
     exe 'make!'
     if !a:bang
         cwindow
+        let errors = getqflist()
+        if !empty(errors)
+            cc 1 "jump to first error if there is any
+        endif
     endif
 
     let &makeprg = default_makeprg
@@ -43,13 +47,21 @@ function! go#command#Build(bang)
     exe 'make!'
     if !a:bang
         cwindow
+        let errors = getqflist()
+        if !empty(errors)
+            cc 1 "jump to first error if there is any
+        endif
     endif
 
     let &makeprg = default_makeprg
 endfunction
 
-function! go#command#Test()
+function! go#command#Test(...)
     let command = "go test ."
+    if len(a:000)
+      let command = "go test " . expand(a:1)
+    endif
+
     let out = go#tool#ExecuteInDir(command)
     if v:shell_error
         call go#tool#ShowErrors(out)
@@ -57,6 +69,11 @@ function! go#command#Test()
         call setqflist([])
     endif
     cwindow
+
+    let errors = getqflist()
+    if !empty(errors)
+        cc 1 "jump to first error if there is any
+    endif
 endfunction
 
 function! go#command#Vet()
@@ -73,6 +90,7 @@ function! go#command#Vet()
     if !empty(errors)
         call setqflist(errors, 'r')
     endif
+
     cwindow
 endfunction
 
